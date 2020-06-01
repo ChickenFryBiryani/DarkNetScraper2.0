@@ -32,7 +32,7 @@ g_sOutputDirectoryTemp = "/home/rob/Covid19/UndergroundMarkets/db/"
 g_nTimeSecToWait = 30 * 24 * 60 * 60  # 30 days
 # set it True if you want to use the default username and password
 g_bUseDefaultUsernamePasswd = False
-g_nBatchSize = 10  # Number of rows to update at once.
+g_nBatchSize = 100  # Number of rows to update at once.
 
 # Default proxies for secure http browsing for tor
 proxies = {'http': 'socks5h://localhost:9050', 'https': 'socks5h://localhost:9050'}
