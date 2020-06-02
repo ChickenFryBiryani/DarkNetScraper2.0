@@ -70,28 +70,6 @@ def Login(aBrowserDriver):
         EC.element_to_be_clickable((By.XPATH, "//a[contains(@href,'http://darkbayupenqdqvv.onion/profile/cart')]")))
 
 
-def NavigateToOnePage(aBrowserDriver, sPageLink):
-    while True:
-        aBrowserDriver.get(sPageLink)
-        aWaitNextPage = WebDriverWait(aBrowserDriver, g_nTimeSecToWait)  # Wait up to x seconds (30 days).
-        aWaitNextPage.until(
-            EC.element_to_be_clickable((By.XPATH, "//a[contains(@href,'http://darkbayupenqdqvv.onion/profile/cart')]")))
-        # Get the page title
-        sPageTitle = aBrowserDriver.title
-        if '(Privoxy@localhost)' in sPageTitle:
-            # 502 - No server or forwarder data received (Privoxy@localhost)
-            # 503 - Forwarding failure (Privoxy@localhost)
-            # 504 - Connection timeout (Privoxy@localhost)
-            aWaitNextPage = WebDriverWait(aBrowserDriver, g_nTimeSecToWait)  # Wait up to x seconds (30 days).
-            aWaitNextPage.until(EC.element_to_be_clickable((By.LINK_TEXT, "Privoxy")))
-        else:
-            break
-        # Sleep for a while and then go to next page
-        time.sleep(1)
-        # Wait for 1 second before scraping next page.
-    time.sleep(1)
-
-
 # Scrapes a link, returns product ids and vendor ids in it.
 def ScrapeNewProductsAndVendorsByPageLink(pageLink):
     pageContent = BeautifulSoup(loginSession.get(pageLink, proxies=proxies).content, 'html.parser')
